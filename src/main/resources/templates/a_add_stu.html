@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="add_a_stu" method="get">
+    <div>
+        <div>
+            学号：<input th:name="stu_no" />
+        </div>
+        <div>
+            姓名：<input th:name="stu_name"  />
+        </div>
+        <div>
+            密码：<input th:name="stu_pwd"  />
+        </div>
+        <div>
+            电话号码：<input th:name="telephone"  />
+        </div>
+        <div>
+            班级号:<select th:name="class_no">
+            <option th:each="a_class:${class_list}"
+                    th:value="${a_class.class_no}"
+                    th:text="${a_class.class_name}">
+            </option>
+        </select>
+        </div>
+        <div>
+            地址：<input th:name="address" />
+        </div>
+        <div>
+            <!--                所属学院：<input th:name="college_id" th:value="${a_stu.college_id}" />-->
+            所属学院：<select th:name="college_id">
+            <option th:each="a_college:${college_list}"
+                    th:value="${a_college.college_id}"
+                    th:text="${a_college.college_name}">
+            </option>
+        </select>
+        </div>
+        <div>
+            <input type="submit" value="保存" />
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cart</title>
+</head>
+<body>
+<h1>购物车</h1>
+<table border="1">
+    <thead>
+    <div>
+        <a th:href="@{show_product_list}">返回</a>
+    </div>
+    <tr>
+        <th>商品ID</th>
+        <th>商品名称</th>
+        <th>商品价格</th>
+        <th>购买数量</th>
+        <th>店铺名称</th>
+        <th>总和</th>
+        <th>删除</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cart : ${cartItems}">
+        <td th:text="${cart.product_id}"></td>
+        <td th:text="${cart.product_name}"></td>
+        <td th:text="${cart.p_price}"></td>
+        <td>
+            <form th:action="@{/update_cart}" method="post">
+                <input type="hidden" name="cart_product_id" th:value="${cart.cart_product_id}"/>
+                <input type="hidden" name="user_id" th:value="${cart.user_id}"/>
+                <input type="number" name="product_count" th:value="${cart.product_count}" min="1"/>
+                <button type="submit">更新</button>
+            </form>
+        </td>
+        <td th:text="${cart.store_name}"></td>
+        <td th:text="${cart.p_price * cart.product_count}"></td>
+        <td>
+            <form th:action="@{/cart_delete}" method="post">
+                <input type="hidden" name="cart_product_id" th:value="${cart.cart_product_id}"/>
+                <input type="hidden" name="user_id" th:value="${cart.user_id}"/>
+                <button type="submit">删除</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<form action="/checkout" method="post">
+    <input type="hidden" name="user_id" th:value="${userId}"/>
+    <button type="submit">结账</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Detail</title>
+</head>
+<body>
+<h1>Product Detail</h1>
+<table border="1">
+    <tr>
+        <th>Product ID</th>
+        <td th:text="${product.product_id}"></td>
+    </tr>
+    <tr>
+        <th>Product Name</th>
+        <td th:text="${product.product_name}"></td>
+    </tr>
+    <tr>
+        <th>Type</th>
+        <td th:text="${product.p_type}"></td>
+    </tr>
+    <tr>
+        <th>Brand</th>
+        <td th:text="${product.brand}"></td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td th:text="${product.p_price}"></td>
+    </tr>
+    <tr>
+        <th>Store ID</th>
+        <td th:text="${product.store_id}"></td>
+    </tr>
+</table>
+<a href="/products">Back to Product List</a>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <div>
+            <form action="get_stu_list">
+                查询：
+                <select th:name="qry_field">
+                    <option th:value="ci.college_name"
+                            th:selected= "${qry_field} eq ci.college_name">学院</option>
+                    <option th:value="cin.class_name"
+                            th:selected= "${qry_field} eq cin.class_name">班级名称</option>
+                    <option th:value="si.stu_no"
+                            th:selected= "${qry_field} eq si.stu_no">学号</option>
+                    <option th:value="si.class_no"
+                            th:selected= "${qry_field} eq si.class_no">班级号</option>
+                    <option th:value="si.stu_name"
+                            th:selected= "${qry_field} eq si.stu_name">姓名</option>
+                    <option th:value="si.address"
+                            th:selected= "${qry_field} eq si.address">地址</option>
+                    <option th:value="si.telephone"
+                            th:selected= "${qry_field} eq si.telephone">电话号码</option>
+                    <option th:value="ci.collegeman"
+                            th:selected= "${qry_field} eq ci.collegeman">学院负责人</option>
+                </select>
+                <input type="text" th:name="qry_condition" th:value="${qry_condition}">
+                <input type="hidden" th:name="current_page" th:value="1">
+                <input type="hidden" th:name="page_size" th:value="10">
+                <input type="submit" value="查询" />
+            </form>
+
+        </div>
+        <table border="1">
+            <tr>
+                <th>序号</th>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>电话号码</th>
+                <th>班级号</th>
+                <th>班级名</th>
+                <th>地址</th>
+                <th>所属学院</th>
+                <th>学院负责人</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="stu,status:${stu_List}">
+                <td th:text="${status.index+1}"></td>
+                <td th:text="${stu.stu_no}"></td>
+                <td th:text="${stu.stu_name}"></td>
+                <td th:text="${stu.telephone}"></td>
+                <td th:text="${stu.class_no}"></td>
+                <td th:text="${stu.class_name}"></td>
+                <td th:text="${stu.address}"></td>
+                <td th:text="${stu.college_name}"></td>
+                <td th:text="${stu.college_man}"></td>
+                <td>
+                    <div><a th:href="@{show_a_edit_stu(stu_no=${stu.stu_no})}">修改</a></div>
+                    <div><a th:href="@{delete_a_stu(stu_no=${stu.stu_no})}">删除</a></div>
+                </td>
+            </tr>
+        </table>
+        <div><a th:href="@{get_stu_list(qry_field=${qry_field},
+                                    qry_condition=${qry_condition},
+                                    current_page=${current_page - 1},
+                                    page_size=${page_size})}">上一页</a></div>
+        <div><a th:href="@{get_stu_list(qry_field=${qry_field},
+                                    qry_condition=${qry_condition},
+                                    current_page=${current_page + 1},
+                                    page_size=${page_size})}">下一页</a></div>
+        <div><a th:href="@{show_a_add_stu}">增加学生信息</a></div>
+    </div>
+</body>
+</html>

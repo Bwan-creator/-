@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>恭喜登陆成功</div>
+<div th:text="${no}"></div>
+<div th:text="${pwd}"></div>
+<div><a th:href="@{get_stu_list(qry_field = si.stu_no,qry_condition='',current_page=1,page_size=10)}">学生信息</a></div>
+</body>
+</html>
